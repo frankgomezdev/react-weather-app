@@ -1,11 +1,19 @@
+import { WeatherCodes } from "../constants";
 
+WeatherCodes
 
-const HourlyWeatherItem = () => {
+const HourlyWeatherItem = ({hourlyWeather}) => {
+  const temperature = Math.floor(hourlyWeather.temp_c);
+  const time = hourlyWeather.time.split(" ")[1].substring(0, 5);
+  const weatherIcon = Object.keys(WeatherCodes).find((icon) =>
+    WeatherCodes[icon].includes(hourlyWeather.condition.code)
+  );
+
   return (
     <li className="weather-item">
-              <p className="time">00:00</p>
-              <img src="icons/clouds.svg" alt="" className="weather-icon" />
-              <p className="temperature">20°</p>
+              <p className="time">{time}</p>
+              <img src={`icons/${weatherIcon}.svg`} alt="" className="weather-icon" />
+              <p className="temperature">{temperature}</p>
             </li>
   )
 }
