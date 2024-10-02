@@ -14,6 +14,7 @@ const SearchSection = ({ getWeatherDetails, searchInputRef }) => {
         const {latitude, longitude} = position.coords;
         const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=2`;
         getWeatherDetails(API_URL);
+        window.innerWidth >= 768 && searchInputRef.current.focus();
       },
       () => {
         alert(
